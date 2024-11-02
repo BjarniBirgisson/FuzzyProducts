@@ -4,13 +4,16 @@ public class Product {
     private int productId;
     private String name;
     private String category;
-    private String description; 
+    private String description;
     private float price;
     private String imageUrl;
-    
+
     public Product() {
     }
-    
+
+    public Product(int productId) {
+        this.productId = productId;
+    }
 
     public int getProductId() {
         return productId;
@@ -59,5 +62,13 @@ public class Product {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Product) {
+            return ((Product) o).getProductId() == this.productId;
+        }
+        return false;
+    }
+
 }
