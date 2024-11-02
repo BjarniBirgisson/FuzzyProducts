@@ -77,7 +77,7 @@ public class ProductDatabase {
      * @return return true if product was updated
      */
     public boolean updateProduct(int id, Product product) {
-        int idx = products.indexOf(product);
+        int idx = products.indexOf(new Product(id));
         if (idx != -1) {
             Product p = products.get(idx);
             p.setName(product.getName());
@@ -88,5 +88,18 @@ public class ProductDatabase {
             return true;
         }
         return false;
+    }
+    
+    /**
+     * Fetch a specific product 
+     * @param id of product to fetch
+     * @return Product if exists, else return null
+     */
+    public Product fetchProduct(int id) {
+        int idx = products.indexOf(new Product(id));
+        if (idx != -1) {
+            return products.get(idx);
+        }
+        return null;
     }
 }
