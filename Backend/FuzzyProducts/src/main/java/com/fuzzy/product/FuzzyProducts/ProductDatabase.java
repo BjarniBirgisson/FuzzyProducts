@@ -1,6 +1,8 @@
 package com.fuzzy.product.FuzzyProducts;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,22 +14,29 @@ public class ProductDatabase {
     // Counter for the productIds in the database
     private int idCount;
     
+    // Products set
     private final ArrayList<Product> products;
 
     public ProductDatabase() {
         products = new ArrayList<Product>();
-        idCount = 0;
+        init();
     }
 
-    public ProductDatabase(ArrayList<Product> products) {
-        // Assign all products with a productId
+    /**
+     * Initialize the database
+     */
+    private void init() {
+        // Clear the list of products
+        this.products.clear(); 
+        // Import the data from file and add all
+        this.products.addAll(DataImporter.importData("../FuzzyProducts/src/main/resources/SampleData.csv"));
+        
+        // Reset ID count and Update all product IDs
         idCount = 0;
         while (idCount < products.size()) {
             products.get(idCount).setProductId(idCount);
             idCount++;
         }
-        this.products = products;
-        
     }
 
     /**
@@ -71,7 +80,7 @@ public class ProductDatabase {
     }
 
     /**
-     * Update a specfic product id
+     * Update a specific product id
      * @param id of product to update
      * @param product new updated attributes
      * @return return true if product was updated
@@ -80,11 +89,11 @@ public class ProductDatabase {
         int idx = products.indexOf(new Product(id));
         if (idx != -1) {
             Product p = products.get(idx);
-            p.setName(product.getName());
-            p.setDescription(product.getDescription());
-            p.setPrice(product.getPrice());
-            p.setCategory(product.getCategory());
-            p.setImageUrl(product.getImageUrl());
+            p.setName(Objects.nonNull(product.getName()) ? product.getName() : p.getName());
+            p.setDescription(Objects.nonNull(product.getName()) ? product.getName() : p.getName());
+            p.setPrice(Objects.nonNull(product.getPrice()) ? product.getPrice() : p.getPrice());
+            p.setCategory(Objects.nonNull(product.getCategory()) ? product.getCategory() : p.getCategory());
+            p.setImageUrl(Objects.nonNull(product.getImageUrl()) ? product.getImageUrl() : p.getImageUrl());
             return true;
         }
         return false;

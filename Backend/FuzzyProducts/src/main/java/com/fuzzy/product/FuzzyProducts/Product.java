@@ -71,6 +71,9 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
+    /**
+     * Override of equals function to compare only product IDs of the product
+     */
     @Override
     public boolean equals(Object o) {
         if (o instanceof Product) {
