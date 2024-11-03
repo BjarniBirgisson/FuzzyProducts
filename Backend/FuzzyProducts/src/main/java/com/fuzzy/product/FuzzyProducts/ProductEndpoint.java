@@ -25,8 +25,8 @@ public class ProductEndpoint {
      * @return all products in database
      */
     @GetMapping(value = "/products")
-    public List<?> getProducts() {
-        List<?> products = this.productDatabase.findAll();
+    public List<Product> getProducts() {
+        List<Product> products = this.productDatabase.findAll();
         return products;
     }
 
@@ -90,6 +90,18 @@ public class ProductEndpoint {
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 
+    }
+    
+    /**
+     * Search for a product 
+     * 
+     * @param id to be fetched
+     * @return the specific product
+     */
+    @GetMapping(value = "/search/{query}")
+    public List<Product> fetchProduct(@PathVariable String query) {
+        List<Product> products = Search.findProducts(query, this.productDatabase.findAll());
+        return products;
     }
 
     /**
