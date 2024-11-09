@@ -9,27 +9,27 @@ Port 8080 on localhost is used by this application: http://localhost:8080
 
 All returned structures are JSON structure
 
-URL endpoints available:
-GET
-/products
+URL endpoints available:<br>
+GET<br>
+/products<br>
 Fetches all Products and returns them back in a JSON structure
 
-POST
-/products
+POST<br>
+/products<br>
 JSON input in body of request will add a new product to the database
 
-PUT
-/products/<id>
+PUT<br>
+/products/<id> <br>
 Updates a specific product id with updates from a JSON body input
 
-GET
-/products/<id>
+GET <br>
+/products/<id> <br>
 Fetch a specific product with related id from database
 
-DELETE
-/products/<id>
+DELETE<br>
+/products/<id> <br>
 Delete a specific product from the database
 
-GET
-/search/<query>
+GET<br>
+/search/<query> <br>
 Search for products in the database. Will look for exact matches first then it will fuzzy search and find the closest match using edit Levenshtein distance
