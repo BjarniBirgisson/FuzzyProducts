@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3010")
 @RestController
 @RequestMapping(produces = "application/json")
 public class ProductEndpoint {
@@ -26,6 +27,7 @@ public class ProductEndpoint {
      */
     @GetMapping(value = "/products")
     public List<Product> getProducts() {
+        System.out.println("Incoming API call for all products!");
         List<Product> products = this.productDatabase.findAll();
         return products;
     }
