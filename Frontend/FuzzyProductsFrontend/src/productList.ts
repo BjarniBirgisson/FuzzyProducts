@@ -1,19 +1,14 @@
-import { getProducts } from './search.ts';
-import { Product } from './search.ts';
+import { getProducts } from './integration';
+import { Product } from './integration';
 
-export function setProductList() {
+export async function setProductList() {
   const result = document.getElementById('product-list-container');
   if (!result) {
     throw new Error('No element with ID `result`');
   }
 
-  let products: Product[] = getProducts();
-  let cards: String[] = [];
-  for (let i = 0; i < products.length; i++) {
-    cards.push(getProductCard(products[i]));
-  }
-
-  result.innerHTML = cards.toString();
+  getProducts().then(products => 
+    result.innerHTML = products.map(p => getProductCard(p)).toString());
 }
 
 export function getProductCard(p: Product): String {

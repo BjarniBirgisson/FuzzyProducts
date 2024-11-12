@@ -1,5 +1,6 @@
 import './style.css';
 import { trigger } from './integration';
+import { setProductList } from './productList';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -9,7 +10,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <input type="search" id="search" name="search"> 
     </div>
     <button id="trigger" type="button">Trigger</button>
-    <div id="result"></div>
+    <div id="product-list-container"></div>
   </div>
 `;
 
@@ -17,5 +18,5 @@ const element = document.getElementById('trigger');
 if (!element) {
   throw new Error('No element with ID `result`');
 } else {
-  element.addEventListener('click', () => trigger());
+  element.addEventListener('click', () => setProductList());
 }
