@@ -1,3 +1,4 @@
+import './style.css';
 import { trigger } from './integration';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
