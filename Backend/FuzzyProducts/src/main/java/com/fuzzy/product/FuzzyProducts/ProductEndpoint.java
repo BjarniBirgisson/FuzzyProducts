@@ -1,5 +1,6 @@
 package com.fuzzy.product.FuzzyProducts;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.*;
@@ -70,9 +71,10 @@ public class ProductEndpoint {
      * @return the specific product
      */
     @GetMapping(value = "/products/{id}")
-    public Product fetchProduct(@PathVariable int id) {
-        Product result = this.productDatabase.fetchProduct(id);
-        if (result != null) {
+    public List<Product> fetchProduct(@PathVariable int id) {
+        ArrayList<Product> result = new ArrayList<Product>();
+        result.add(this.productDatabase.fetchProduct(id));
+        if (!result.isEmpty() && result != null) {
             return result;
         }
         return null;
