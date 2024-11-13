@@ -7,6 +7,7 @@ export interface Product {
   imageUrl: string;
 }
 
+// Get all products from the API endpoint
 export async function getProducts(): Promise<Product[]> {
   const headers: Headers = new Headers();
   headers.set('Content-Type', 'application/json');
@@ -23,6 +24,7 @@ export async function getProducts(): Promise<Product[]> {
   return res_1 as Product[];
 }
 
+// Search products for a specific query string through the API endpoint
 export async function search(query: string): Promise<Product[]> {
   const headers: Headers = new Headers();
   headers.set('Content-Type', 'application/json');
@@ -42,6 +44,7 @@ export async function search(query: string): Promise<Product[]> {
   return res_1 as Product[];
 }
 
+// Fetch a specific product with id from the API endpoint
 export async function getProduct(productId: string): Promise<Product[]> {
   const headers: Headers = new Headers();
   headers.set('Content-Type', 'application/json');
@@ -61,13 +64,3 @@ export async function getProduct(productId: string): Promise<Product[]> {
   return res_1 as Product[];
 }
 
-export function trigger() {
-  const result = document.getElementById('result');
-  if (!result) {
-    throw new Error('No element with ID `result`');
-  }
-
-  getProducts().then((products) => {
-    result.innerHTML = products.map((p) => p.name).toString();
-  });
-}
